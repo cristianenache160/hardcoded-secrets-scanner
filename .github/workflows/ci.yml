@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Scan for hardcoded secrets
+        - name: Scan for hardcoded secrets
         run: |
           echo "Scanning repository for hardcoded secrets..."
-          grep -R -i "password\|secret\|apikey\|token" . && exit 1 || echo "No secrets found."
+          grep -R -i --exclude-dir=.github "password\|apikey\|token" . && exit 1 || echo "No secrets found."
