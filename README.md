@@ -8,5 +8,4 @@ The pipeline automatically scans the repository for hardcoded secrets
 The project illustrates basic DevSecOps principles by integrating
 automated security checks into the CI process.
 
-#exposing api key
 apikey=123456
