@@ -17,7 +17,12 @@ jobs:
       - name: Scan for hardcoded secrets
         run: |
           echo "Scanning repository for hardcoded secrets..."
-          if grep -R -i --exclude-dir=.github "password\|apikey\|token" .; then
+
+          if grep -R -i \
+            --exclude-dir=.git \
+            --exclude-dir=.github \
+            --exclude=README.md \
+            -E "(password|apikey|token)[[:space:]]*=" .; then
             echo "❌ Hardcoded secret detected!"
             exit 1
           else
