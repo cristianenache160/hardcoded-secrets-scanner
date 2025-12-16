@@ -1,0 +1,20 @@
+name: Hardcoded Secrets Scanner
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  secrets-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan for hardcoded secrets
+        run: |
+          echo "Scanning repository for hardcoded secrets..."
+          grep -R -i "password\|secret\|apikey\|token" . && exit 1 || echo "No secrets found."
